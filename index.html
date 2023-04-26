@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .feita {
+      text-decoration: line-through;
+    }
+
+    .Lazer {
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p>
+      count = 
+      <span v-if="count <= 5" style="color:red">{{ count }}</span>
+      <span v-else style="color:blue">{{ count }}</span>
+    </p>
+    
+    <select v-model="categoria">
+      <option v-for="categoria in categorias" :value="categoria">{{categoria}}</option>
+    </select>
+    <input type="text" v-model="nome">
+    <button @click="add" :disabled="nome.length == 0">
+      Adicionar
+    </button>
+
+    <p> Total de tarefas: {{tarefasFeitas }}/{{ tarefas.length }}</p>
+    <ul>
+      <li v-for="tarefa in tarefas" :class="{ feita: tarefa.done}">
+        <label :class="tarefa.categoria">
+          <input type="checkbox" v-model="tarefa.done">
+          {{ tarefa.descricao }}
+        </label>
+      </li>
+    </ul>
+  
+  </div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="teste.js"></script>
+</body>
+</html>
